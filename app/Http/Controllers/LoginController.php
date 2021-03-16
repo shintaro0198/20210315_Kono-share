@@ -9,15 +9,17 @@ class LoginController extends Controller
 {
     public function collation(Request $request,ShareUser $shareuser)
     {   
-        if($shareuser->email===$request->email&&$shareuser->password===$request->password)
-        { 
-            $item = ShareUser::where($request->email, $shareuser->email)->first();
+            $item = ShareUser::where('email', $request->email)->first();
+            if($item->password===$request->password)
+            {
+                return [response()->json([
+                    'message' => $item,
+                ],200), view($request->route)];
+            } else {
             return response()->json([
-                'message' => $item,
-            ],200);
-        } else {return response()->json([
-            'message' =>'failed',
-        ],404);}
+                'message' => 'failed',
+            ], 404);
+        } 
     }
     public function index()
     {

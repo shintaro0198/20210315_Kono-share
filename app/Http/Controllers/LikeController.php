@@ -8,21 +8,24 @@ use App\Models\Share;
 
 class LikeController extends Controller
 {
-    public function update(Like $like , Share $share){
-        $item = Share::where('id',$share->id)->first();
+    public function store(Request $request,$id){
+        $item = Share::where('id',$id)->first();
         $content = new Like;
         $content->id = $item->id;
-        $content->user_id=$item->user_id;
-        $content->share_id=
-        $item->save();
+        $content->num = $request->num;
+        $content->share_id = $request->share_id;
+        $content->user_id = $item->user_id;
+        $content->save();
         return response()->json([
-            'message' => $item,
-            'data' => $item,
+            'message' => 'created successlly',
+            'data' => $content
+        ]);
+    }
+    public function destroy($id){
+        $item = Like::where('id',$id)->first();
+        $item->delete();
+        return response()->json([
+            'message' => 'deleted successlly'
         ],200);
     }
-    public function destroy(Request $request, Like $like){
-        $item = Like::where($request->share_id,$like->share_id)->first();
-        $item->num->delete();
-        
-    },,,,,,,,
 }

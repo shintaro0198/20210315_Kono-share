@@ -13,6 +13,7 @@ class RegisterController extends Controller
         $item->name = $request->name;
         $item->email = $request->email;
         $item->password = $request->password;
+        $item->profile = $request->profile;
         $item->save();
         return response()->json([
             'message' => 'Created successfully',

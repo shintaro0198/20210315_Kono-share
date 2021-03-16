@@ -17,5 +17,8 @@ Route::GET('/login',[LoginController::class,'index']);
 Route::POST('/logout',[LogoutController::class,'out']);
 Route::GET('/user/{id}',[UserController::class,'show']);
 Route::PUT('/user/{id}',[UserController::class,'update']);
+Route::POST('/like/{id}',[LikeController::class,'store']);
+Route::DELETE('/like/{id}',[LikeController::class,'destroy']);
+Route::POST('/comment/{id}',[CommentController::class,'store']);
 
 
