@@ -7,8 +7,8 @@ use App\Models\ShareUser;
 
 class UserController extends Controller
 {
-    public function index(Request $request,ShareUser $shareuser){
-        $item = ShareUser::where('id', $shareuser->id)->first();
+    public function show($id){
+        $item = ShareUser::where('id',$id)->first();
         if ($item){
             return response()->json([
                 'message' => $item,
@@ -19,8 +19,8 @@ class UserController extends Controller
             ],404);
         }
     }
-    public function update(Request $request,ShareUser $shareuser){
-        $item = ShareUser::where('id',$shareuser->id)->first();
+    public function update(Request $request,$id){
+        $item = ShareUser::where('id',$id)->first();
         $item->name = $request->name;
         $item->save();
         if ($item){

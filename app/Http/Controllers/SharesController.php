@@ -33,10 +33,16 @@ class SharesController extends Controller
         $item->user_id = $request->user_id;
         $item->share = $request->share;
         $item->save();
+        if ($item){
         return response()->json([
             'message'=>'Created successfully',
             'data' => $item
         ],200);
+        } else {
+            return response()->json([
+                'message'=>'failed',
+            ],404);
+        }
     }
 
     /**
