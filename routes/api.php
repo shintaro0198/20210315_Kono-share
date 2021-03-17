@@ -12,7 +12,7 @@ use App\Http\Controllers\CommentController;
 
 Route::apiResource('/shares',SharesController::class);
 Route::POST('/register',[RegisterController::class,'store']);
-Route::POST('/login',[LoginController::class,'collation']);
+Route::POST('/login', [LoginController::class, 'collation']);
 Route::GET('/login',[LoginController::class,'index']);
 Route::POST('/logout',[LogoutController::class,'out']);
 Route::GET('/user/{id}',[UserController::class,'show']);

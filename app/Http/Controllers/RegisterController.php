@@ -9,7 +9,6 @@ class RegisterController extends Controller
 {
     public function store(Request $request){
         $item = new ShareUser;
-        $item->id = $request->id;
         $item->name = $request->name;
         $item->email = $request->email;
         $item->password = $request->password;

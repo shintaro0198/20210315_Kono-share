@@ -7,14 +7,14 @@ use App\Models\ShareUser;
 
 class LoginController extends Controller
 {
-    public function collation(Request $request,ShareUser $shareuser)
+    public function collation(Request $request)
     {   
             $item = ShareUser::where('email', $request->email)->first();
             if($item->password===$request->password)
             {
-                return [response()->json([
+                return response()->json([
                     'message' => $item,
-                ],200), view($request->route)];
+                ],200);
             } else {
             return response()->json([
                 'message' => 'failed',
