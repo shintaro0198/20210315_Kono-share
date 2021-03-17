@@ -1,5 +1,15 @@
 <?php
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
+$server = $url["host"];
+$username = $url["user"];
+$password = $url["pass"];
+$db = substr($url["path"], 1);
+
+$conn = new mysqli($server, $username, $password, $db);
+
+$conn = new mysqli($server, $username, $password, $db);
+$conn->set_charset('utf8');
 use Illuminate\Support\Str;
 
 return [
@@ -52,8 +62,8 @@ return [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
