@@ -52,8 +52,12 @@ class SharesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Share $share)
-    {
-        $item = Share::where('id',$share->id)->first();
+    {   
+        if($share->user_id){
+            $item = Share::where('user_id',$share->user_id)->all();
+        } else{
+            $item = Share::where('id', $share->id)->first();
+        };
         return response()->json([
             'message'=>$item,
             'data'=>$item,
