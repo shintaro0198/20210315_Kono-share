@@ -7,11 +7,12 @@ use App\Models\ShareUser;
 
 class UserController extends Controller
 {
-    public function show($id){
-        $item = ShareUser::where('id',$id)->first();
+    public function show(Request $request){
+        $item = ShareUser::where('email',$request->email)->first();
         if ($item){
             return response()->json([
                 'message' => $item,
+                'data'=>$item,
             ], 200);
         } else {
             return response()->json([
@@ -19,8 +20,8 @@ class UserController extends Controller
             ],404);
         }
     }
-    public function update(Request $request,$id){
-        $item = ShareUser::where('id',$id)->first();
+    public function update(Request $request){
+        $item = ShareUser::where('email',$request->email)->first();
         $item->name = $request->name;
         $item->save();
         if ($item){
