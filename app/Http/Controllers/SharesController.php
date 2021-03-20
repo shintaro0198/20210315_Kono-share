@@ -54,9 +54,9 @@ class SharesController extends Controller
     public function show(Share $share)
     {   
         
-            $item = Share::where('user_id', $share->id)->first();
+        $item = Share::where('id',$share->id)->first();
         return response()->json([
-            'message'=>$item,
+            'message'=>$share->id,
             'data'=>$item,
         ],200);
     }
