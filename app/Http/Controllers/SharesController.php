@@ -53,10 +53,8 @@ class SharesController extends Controller
      */
     public function show(Share $share)
     {   
-        if(preg_match("user",$share->id)){
-            $item = Share::where('user_id',$share->id)->all();
-        } else{
-            $item = Share::where('id', $share->id)->first();
+        
+            $item = Share::where('user_id', $share->id)->first();
         };
         return response()->json([
             'message'=>$item,
