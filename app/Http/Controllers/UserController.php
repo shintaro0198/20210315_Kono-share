@@ -8,7 +8,7 @@ use App\Models\ShareUser;
 class UserController extends Controller
 {
     public function show(Request $request){
-        $item = ShareUser::where('email',$request->email)->first();
+        $item = ShareUser::all();
         if ($item){
             return response()->json([
                 'message' => $item,
